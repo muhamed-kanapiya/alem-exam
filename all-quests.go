@@ -97,7 +97,7 @@ func iToA(num int) (str string) {
 	return str
 }
 
-//alphamirror
+alphamirror
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -255,6 +255,7 @@ func isUniq(str string, k rune) bool {
 	}
 	return true
 }
+
 func main() {
 	arg := os.Args[1:]
 	if len(arg) != 2 {
@@ -427,7 +428,7 @@ func main() {
 	}
 }
 
-anagram
+//anagram
 func main() {
 	test1 := IsAnagram("a", "a")
 	fmt.Println(test1)
@@ -442,38 +443,17 @@ func main() {
 	fmt.Println(test4)
 }
 
-func IsAnagram(str1, str2 string) bool {
-	res := ""
-	for i := 0; i < len(str1); i++ {
-		for j := 0; j < len(str2); j++ {
-			if str1[i] == str2[j] {
-				res += string(str1[i])
-				str2 = str2[:j] + str2[j+1:]
-				break
-			}
-		}
-	}
-	if str1 == res {
-		return true
-	}
-	return false
-}
-
-func sWS(str string) (res string) {
-	count := len(str)
-	if str[0] == ' ' {
-		return sWS(str[1:])
-	}
-	if str[count-1] == ' ' {
-		return sWS(str[:count-1])
-	}
-	for i := 0; i < count; i++ {
-		if str[i] == ' ' {
+func isAnagram(str1, str2 string) bool {
+	str := str1 + str2
+	sum := byte(0)
+	for _, v := range str {
+		if v == ' ' {
 			continue
 		}
-		res += string(str[i])
+		sum ^= byte(v)
 	}
-	return res
+	//fmt.Println(string(sum))
+	return sum == 0
 }
 
 //balancedstring
