@@ -153,7 +153,53 @@ func main() {
 	}
 }
 
-doop
+// doop
+
+Instructions
+
+Write a program that is called doop.
+
+The program has to be used with three arguments:
+
+    A value
+    An operator
+    Another value
+
+You should use int64.
+
+The following operators are considered valid: +, -, /, *, %.
+
+In case of an invalid operator or overflow the programs prints 0.
+
+In case of an invalid number of arguments the program prints nothing.
+
+The program has to handle the modulo and division operations by 0 as shown on the output examples below.
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build doop.go
+student@ubuntu:~/[[ROOT]]/test$ ./doop
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 + 1 | cat -e
+2$
+student@ubuntu:~/[[ROOT]]/test$ ./doop hello + 1 | cat -e
+0$
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 p 1 | cat -e
+0$
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 / 0 | cat -e
+No division by 0$
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 % 0 | cat -e
+No modulo by 0$
+student@ubuntu:~/[[ROOT]]/test$ ./doop 9223372036854775807 + 1
+0
+student@ubuntu:~/[[ROOT]]/test$ ./doop -9223372036854775809 - 3
+0
+student@ubuntu:~/[[ROOT]]/test$ ./doop 9223372036854775807 "*" 3
+0
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 "*" 1
+1
+student@ubuntu:~/[[ROOT]]/test$ ./doop 1 "*" -1
+-1
+student@ubuntu:~/[[ROOT]]/test$
+
 func main() {
 	if len(os.Args) == 4 {
 		var res int
@@ -202,6 +248,26 @@ func main() {
 }
 
 //printchessboard
+
+Instructions
+
+Write a program that takes two integers as arguments and displays the chess desk, in which white cells are represented by ' ' and black cells by '#'.
+
+    If the number of arguments is different from 2, or if the argument is not a positive number, the program displays Error followed by a newline ('\n').
+
+Usage
+
+student@ubuntu:~/[[ROOT]]/printchessboard$ go build
+student@ubuntu:~/[[ROOT]]/printchessboard$ ./printchessboard 4 3 | cat -e
+# # $
+ # #$
+# # $
+student@ubuntu:~/[[ROOT]]/printchessboard$ ./printchessboard 7 | cat -e
+Error$
+student@ubuntu:~/[[ROOT]]/printchessboard$ ./printchessboard 0 0 | cat -e
+Error$
+student@ubuntu:~/[[ROOT]]/printchessboard$
+
 func main() {
 	err := "Error"
 	if len(os.Args) == 3 {
@@ -234,6 +300,32 @@ func main() {
 }
 
 //ispowerof2
+
+Instructions
+
+Write a program that determines if a given number is a power of 2.
+
+This program must print true if the given number is a power of 2, otherwise it prints false.
+
+    If there is more than one or no argument the program should print a newline (“\n”).
+
+    When there is only 1 argument, it will always be a positive valid int.
+
+Usage :
+
+student@ubuntu:~/ispowerof2$ go build
+student@ubuntu:~/ispowerof2$ ./ispowerof2 2 | cat -e
+true$
+student@ubuntu:~/ispowerof2$ ./ispowerof2 64 | cat -e
+true$
+student@ubuntu:~/ispowerof2$ ./ispowerof2 513 | cat -e
+false$
+student@ubuntu:~/ispowerof2$ ./ispowerof2
+
+student@ubuntu:~/ispowerof2$ ./ispowerof2 64 1024
+
+student@ubuntu:~/ispowerof2$
+
 func main() {
 	defer z01.PrintRune('\n')
 	flag := "true"
@@ -253,6 +345,30 @@ func main() {
 }
 
 //union
+
+Instructions
+
+Write a program that takes two string and displays, without doubles, the characters that appear in either one of the string.
+
+The display will be in the order that the characters will appear on the command line and will be followed by a newline ('\n').
+
+If the number of arguments is different from 2, then the program displays newline ('\n').
+Usage
+
+student@ubuntu:~/[[ROOT]]/union$ go build
+student@ubuntu:~/[[ROOT]]/union$ ./union zpadinton paqefwtdjetyiytjneytjoeyjnejeyj | cat -e
+zpadintoqefwjy$
+student@ubuntu:~/[[ROOT]]/union$ ./union ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd | cat -e
+df6vewg4thras$
+student@ubuntu:~/[[ROOT]]/union$ ./union rien "cette phrase ne cache rien" | cat -e
+rienct phas$
+student@ubuntu:~/[[ROOT]]/union$ ./union | cat -e
+$
+student@ubuntu:~/[[ROOT]]/union$ ./union rien | cat -e
+$
+student@ubuntu:~/[[ROOT]]/union$
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	var res string
@@ -296,6 +412,25 @@ func main() {
 }
 
 //inter
+
+Instructions
+
+Write a program that takes two string and displays, without doubles, the characters that appear in both string, in the order they appear in the first one.
+
+    The display will be followed by a newline ('\n').
+
+    If the number of arguments is different from 2, the program displays a newline ('\n').
+
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test "padinton" "paqefwtdjetyiytjneytjoeyjnejeyj"
+padinto
+student@ubuntu:~/[[ROOT]]/test$ ./test ddf6vewg64f  twthgdwthdwfteewhrtag6h4ffdhsd
+df6ewg4
+student@ubuntu:~/[[ROOT]]/test$
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 3 {
@@ -344,11 +479,78 @@ func main() {
 }
 
 //swapbits
+
+##WARNING! VERY IMPORTANT!
+
+For this exercise a function will be tested with the exam own main. However the student still needs to submit a structured program:
+
+This means that:
+
+    The package needs to be named package main.
+    The submitted code needs one declared function main(func main()) even if empty.
+    The function main declared needs to also pass the Restrictions Checker(illegal functions tester). It is advised for the student to just empty the function main after its own testings are done.
+    Every other rules are obviously the same than for a program.
+
+Instructions
+
+Write a function that takes a byte, swaps its halfs (like the example) and returns the result.
+Expected function
+
+func SwapBits(octet byte) byte {
+
+}
+
+Example:
+
+1 byte
+
+0100 | 0001
+    \ /
+    / \
+0001 | 0100
+
+
 func SwapBits(octet byte) byte {
 	return octet<<4 + octet>>4
 }
 
 //twosums
+
+nstructions
+
+Given an array of integers, return indexes of the two numbers such that they add up to a specific target.
+
+If there are more than one solution, return the first one.
+
+If there are no solutions, return nil.
+
+Expected function :
+
+func TwoSum(nums []int, target int) []int {
+}
+
+Here is a possible program to test your function :
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	case1 := []int{1, 2, 3, 4}
+	out := TwoSum(case1, 5)
+	fmt.Println(out)
+}
+
+And its output :
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test
+[0 3]
+student@ubuntu:~/[[ROOT]]/test$
+
+
 func main() {
 	case1 := []int{1, 2, 3, 4}
 	out := TwoSum(case1, 5)
@@ -369,6 +571,34 @@ func TwoSum(nums []int, target int) []int {
 }
 
 //repeatalpha
+
+Instructions
+
+Write a program called repeat_alpha that takes a string and displays it repeating each alphabetical character as many times as its alphabetical index.
+
+The result must be followed by a newline ('\n').
+
+'a' becomes 'a', 'b' becomes 'bb', 'e' becomes 'eeeee', etc…
+
+The case remains unchanged.
+
+If the number of arguments is different from 1, the program displays a newline ('\n').
+Usage
+
+student@ubuntu:~/[[ROOT]]/repeatalpha$ go build
+student@ubuntu:~/[[ROOT]]/repeatalpha$ ./repeatalpha "abc" | cat -e
+abbccc
+student@ubuntu:~/[[ROOT]]/repeatalpha$ ./repeatalpha "Choumi." | cat -e
+CCChhhhhhhhooooooooooooooouuuuuuuuuuuuuuuuuuuuummmmmmmmmmmmmiiiiiiiii.$
+student@ubuntu:~/[[ROOT]]/repeatalpha$ ./repeatalpha "abacadaba 01!" | cat -e
+abbacccaddddabba 01!$
+student@ubuntu:~/[[ROOT]]/repeatalpha$ ./repeatalpha | cat -e
+$
+student@ubuntu:~/[[ROOT]]/repeatalpha$ ./repeatalpha "" | cat -e
+$
+student@ubuntu:~/[[ROOT]]/repeatalpha$
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -391,6 +621,41 @@ func main() {
 }
 
 //sortwordarrprog
+
+Instructions
+
+Write a function SortWordArr that sorts by ascii (in ascending order) a string array.
+Expected function
+
+func SortWordArr(array []string) {
+
+}
+
+Usage
+
+Here is a possible program to test your function :
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	result := []string{"a", "A", "1", "b", "B", "2", "c", "C", "3"}
+	SortWordArr(result)
+
+	fmt.Println(result)
+}
+
+And its output :
+
+student@ubuntu:~/test$ go build
+student@ubuntu:~/test$ ./test
+[1 2 3 A B C a b c]
+student@ubuntu:~/test$
+
 func main() {
 	result := []string{"a", "A", "1", "b", "B", "2", "c", "C", "3"}
 	SortWordArr(result)
@@ -411,6 +676,30 @@ func SortWordArr(array []string) {
 }
 
 //printhex
+
+Instructions
+
+Write a program that takes a positive (or zero) number expressed in base 10, and displays it in base 16 (with lowercase letters) followed by a newline ('\n').
+
+    If the number of parameters is different from 1, the program displays a newline.
+    Error cases have to be handled as shown in the example below.
+
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test "10"
+a
+student@ubuntu:~/[[ROOT]]/test$ ./test "255"
+ff
+student@ubuntu:~/[[ROOT]]/test$ ./test "5156454"
+4eae66
+student@ubuntu:~/[[ROOT]]/test$ ./test
+
+student@ubuntu:~/[[ROOT]]/test$ ./test "123 132 1" | cat -e
+0$
+student@ubuntu:~/[[ROOT]]/test$
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -431,6 +720,34 @@ func main() {
 }
 
 //gcd
+
+Instructions
+
+Write a program that takes two string representing two strictly positive integers that fit in an int.
+
+The program displays their greatest common divisor followed by a newline ('\n').
+
+If the number of parameters is different from 2, the program displays a newline.
+
+All arguments tested will be positive int values.
+Usage
+
+student@ubuntu:~/[[ROOT]]/gcd$ go build
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd 42 10 | cat -e
+2$
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd 42 12 | cat -e
+6$
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd 14 77 | cat -e
+7$
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd 17 3 | cat -e
+1$
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd | cat -e
+$
+student@ubuntu:~/[[ROOT]]/gcd$ ./gcd 50 12 4 | cat -e
+$
+student@ubuntu:~/[[ROOT]]/gcd$
+
+
 func main() {
 	if len(os.Args) == 3 {
 		res := 0
@@ -450,6 +767,55 @@ func main() {
 }
 
 //anagram
+
+Instructions
+
+Write a function that returns true if two strings are anagrams, otherwise returns false. Anagram is a string made by using the letters of another string in a different order.
+
+Only lower case characters will be given.
+Expected function
+
+package piscine
+
+func IsAnagram(str1, str2 string) bool {
+
+}
+
+Usage
+
+Here is a possible program to test your function:
+
+package main
+
+import (
+	piscine ".."
+	"fmt"
+)
+
+func main() {
+	test1 := piscine.IsAnagram("listen", "silent")
+	fmt.Println(test1)
+
+	test2 := piscine.IsAnagram("alem", "school")
+	fmt.Println(test2)
+
+	test3 := piscine.IsAnagram("neat", "a net")
+	fmt.Println(test3)
+
+	test4 := piscine.IsAnagram("anna madrigal", "a man and a girl")
+	fmt.Println(test4)
+}
+
+Its output:
+
+$> go build
+$> ./main
+true
+false
+true
+true
+
+
 func main() {
 	test1 := IsAnagram("a", "a")
 	fmt.Println(test1)
@@ -478,6 +844,36 @@ func isAnagram(str1, str2 string) bool {
 }
 
 //balancedstring
+
+Instructions
+
+Balanced string is a string that has equal quantity of ‘C’ and ‘D’ characters.
+
+Write a program that takes a string and outputs maximum amount of balanced strings without ignoring any letters. Display output with \n at the end of line.
+
+If the number of arguments is not 1, display \n.
+
+It will only be tested strings containing the characters ‘C’ and ‘D’.
+Usage
+
+student@ubuntu:~/[[ROOT]]/balancedstring$ go build
+student@ubuntu:~/[[ROOT]]/balancedstring$ ./balancedstring "CDCCDDCDCD"
+4
+student@ubuntu:~/[[ROOT]]/balancedstring$ ./balancedstring "CDDDDCCCDC"
+3
+student@ubuntu:~/[[ROOT]]/balancedstring$ ./balancedstring "DDDDCCCC"
+1
+student@ubuntu:~/[[ROOT]]/balancedstring$ ./balancedstring "CDCCCDDCDD"
+2
+
+In first example “CDCCDDCDCD” can be split into “CD”, “CCDD”, “CD”, “CD”, each substring contains same number of ‘C’ and ‘D’.
+
+Second, “CDDDDCCCDC” can be split into: “CD”, “DDDCCC”, “DC”.
+
+“DDDDCCCC” can be split into “DDDDCCCC”.
+
+“CDCCCDDCDD” can be split into: “CD”, “CCCDDCDD”, since each substring contains an equal number of ‘C’ and ‘D’
+
 func main() {
 	if len(os.Args) == 2 {
 		var count, res int
@@ -498,7 +894,38 @@ func main() {
 	}
 }
 
-lcm
+// lcm
+
+Instructions
+
+Write a function, lcm, that returns least common multiple.
+
+It will be tested with positive int values and 0.
+Expected function
+
+func Lcm(first, second int) int {
+
+}
+
+Usage
+
+Here is a possible program to test your function :
+
+package main
+
+func main() {
+	fmt.Println(Lcm(2, 7))
+	fmt.Println(Lcm(0, 4))
+}
+
+Output
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test
+14
+0
+student@ubuntu:~/[[ROOT]]/test$
+
 func main() {
 	fmt.Println(Lcm(7, 34))
 }
@@ -514,6 +941,47 @@ func Lcm(first, second int) int {
 }
 
 //nauuo
+
+Instructions
+
+There was a vote. There are people who voted positively, negatively, and randomly. Figure out if the final answer depends on random people or not. If it does, return ‘?’, otherwise the result must be either ‘+’, ‘-‘, or ‘0’ Previous characters stand for outcome of the vote: positive/negative/draw. Input is always positive.
+
+Write a function, Nauuo, that returns final result of voting.
+Expected function
+
+func Nauuo(plus, minus, rand int) string {
+
+}
+
+Usage
+
+Here is a possible program to test your function :
+
+package main
+
+import (
+	"fmt"
+	piscine ".."
+)
+
+func main() {
+	fmt.Println(piscine.Nauuo(50, 43, 20))
+	fmt.Println(piscine.Nauuo(13, 13, 0))
+	fmt.Println(piscine.Nauuo(10, 9, 0))
+	fmt.Println(piscine.Nauuo(5, 9, 2))
+}
+
+And its output :
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test
+?
+0
++
+-
+student@ubuntu:~/[[ROOT]]/test$
+
+
 func main() {
 	fmt.Println(Nauuo(50, 43, 20))
 	fmt.Println(Nauuo(13, 13, 0))
@@ -535,6 +1003,26 @@ func Nauuo(plus, minus, rand int) string {
 }
 
 //uniqueoccur
+
+Instructions
+
+Write a program that outputs true if the number of occurrences of each character is unique, otherwise false. \n should be at the of line.
+
+If number of arguments is not 1 output \n.
+
+Only lower case characters will be given.
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./main "abbaac"
+true
+student@ubuntu:~/[[ROOT]]/test$ ./main "ab"
+false
+student@ubuntu:~/[[ROOT]]/test$ ./main "abcacccazb"
+true
+
+In first example, character ‘a’ has 3 occurrences, ‘b’ has 2 and ‘c’ has 1. No two characters have the same number of occurrences.
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -574,6 +1062,31 @@ func isUniq(m map[rune]int, key rune, count int) bool {
 }
 
 //hiddenp
+
+Instructions
+
+Write a program named hiddenp that takes two string and that, if the first string is hidden in the second one, displays 1 followed by a newline ('\n'), otherwise it displays 0 followed by a newline.
+
+Let s1 and s2 be string. It is considered that s1 is hidden in s2 if it is possible to find each character from s1 in s2, in the same order as they appear in s1.
+
+If s1 is an empty string it is considered hidden in any string.
+
+If the number of parameters is different from 2, the program displays a newline.
+Usage
+
+student@ubuntu:~/[[ROOT]]/hiddenp$ go build
+student@ubuntu:~/[[ROOT]]/hiddenp$ ./hiddenp "fgex.;" "tyf34gdgf;'ektufjhgdgex.;.;rtjynur6" | cat -e
+1$
+student@ubuntu:~/[[ROOT]]/hiddenp$ ./hiddenp "abc" "2altrb53c.sse" | cat -e
+1$
+student@ubuntu:~/[[ROOT]]/hiddenp$ ./hiddenp "abc" "btarc" | cat -e
+0$
+student@ubuntu:~/[[ROOT]]/hiddenp$ ./hiddenp "DD" "DABC" | cat -e
+0$
+student@ubuntu:~/[[ROOT]]/hiddenp$ ./hiddenp | cat -e
+$
+student@ubuntu:~/[[ROOT]]/hiddenp$
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 3 {
@@ -593,7 +1106,33 @@ func main() {
 	}
 }
 
-rostring
+// rostring
+
+Instructions
+
+Write a program that takes a string and displays this string after rotating it one word to the left.
+
+Thus, the first word becomes the last, and others stay in the same order.
+
+A word is a sequence of alphanumerical characters.
+
+Words will be separated by only one space in the output.
+
+If the number of arguments is different from 1, the program displays a newline.
+Usage
+
+student@ubuntu:~/[[ROOT]]/rostring$ go build
+student@ubuntu:~/[[ROOT]]/rostring$ ./rostring "abc   " | cat -e
+abc$
+student@ubuntu:~/[[ROOT]]/rostring$ ./rostring "Let there     be light"
+there be light Let
+student@ubuntu:~/[[ROOT]]/rostring$ ./rostring "     AkjhZ zLKIJz , 23y"
+zLKIJz , 23y AkjhZ
+student@ubuntu:~/[[ROOT]]/rostring$ ./rostring | cat -e
+$
+student@ubuntu:~/[[ROOT]]/rostring$
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -653,6 +1192,41 @@ func splitWS(str string) []string {
 }
 
 //splitprog
+
+Instructions
+
+Write a function that separates the words of a string and puts them in a string array.
+
+The separators are the characters of the charset string given in parameter.
+Expected function
+
+func Split(str, charset string) []string {
+
+}
+
+Usage
+
+Here is a possible program to test your function :
+
+package main
+
+import (
+	"fmt"
+	piscine ".."
+)
+
+func main() {
+	str := "HelloHAhowHAareHAyou?"
+	fmt.Println(piscine.Split(str, "HA"))
+}
+
+And its output :
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test
+[Hello how are you?]
+student@ubuntu:~/[[ROOT]]/test$
+
 func main() {
 	str := "HelloHAhowHAareHAyou?"
 	fmt.Println(Split(str, "HA"))
@@ -690,6 +1264,31 @@ func Split(str, charset string) []string {
 }
 
 //revwstr
+
+Instructions
+
+Write a program that takes a string as a parameter, and prints its words in reverse.
+
+    A word is a sequence of alphanumerical characters.
+
+    If the number of parameters is different from 1, the program will display newline ('\n').
+
+    In the parameters that are going to be tested, there will not be any extra spaces. (meaning that there will not be additional spaces at the beginning or at the end of the string and that words will always be separated by exactly one space).
+
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test "the time of contempt precedes that of indifference"
+indifference of that precedes contempt of time the
+student@ubuntu:~/[[ROOT]]/test$ ./test "abcdefghijklm"
+abcdefghijklm
+student@ubuntu:~/[[ROOT]]/test$ ./test "he stared at the mountain"
+mountain the at stared he
+student@ubuntu:~/[[ROOT]]/test$ ./test "" | cat-e
+$
+student@ubuntu:~/[[ROOT]]/test$ 
+
+
 func main() {
 	defer z01.PrintRune('\n')
 	if len(os.Args) == 2 {
@@ -709,6 +1308,39 @@ func main() {
 }
 
 //priorprime
+
+Instructions
+
+You are given an integer. Your function must return sum of all prime numbers prior to the number exclusively. The number is not included.
+Expected function and structure
+
+package main
+
+func Priorprime(x int) int {
+
+}
+
+Usage
+
+Here is a possible program to test your function:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println(Priorprime(14))
+}
+
+Its output:
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./priorprime
+41
+student@ubuntu:~/[[ROOT]]/test$
+
 func main() {
 	fmt.Println(Prioprime(14))
 }
@@ -732,6 +1364,39 @@ func Prime(x int) bool {
 }
 
 //fprime
+
+Instructions
+
+Write a program that takes a positive int and displays its prime factors, followed by a newline ('\n').
+
+    Factors must be displayed in ascending order and separated by *.
+
+    If the number of parameters is different from 1, the program displays a newline.
+
+    The input, when there is one, will always be valid.
+
+Usage
+
+student@ubuntu:~/[[ROOT]]/test$ go build
+student@ubuntu:~/[[ROOT]]/test$ ./test 225225
+3*3*5*5*7*11*13
+student@ubuntu:~/[[ROOT]]/test$ ./test 8333325
+3*3*5*5*7*11*13*37
+student@ubuntu:~/[[ROOT]]/test$ ./test 9539
+9539
+student@ubuntu:~/[[ROOT]]/test$ ./test 804577
+804577
+student@ubuntu:~/[[ROOT]]/test$ ./test 42
+2*3*7
+student@ubuntu:~/[[ROOT]]/test$ ./test a
+
+student@ubuntu:~/[[ROOT]]/test$ ./test 0
+
+student@ubuntu:~/[[ROOT]]/test$ ./test 1
+
+student@ubuntu:~/[[ROOT]]/test$
+
+
 func main() {
     arg := os.Args[1]
     divider := 2
