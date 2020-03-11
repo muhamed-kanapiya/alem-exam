@@ -662,17 +662,14 @@ func main() {
 	fmt.Println(result)
 }
 func SortWordArr(array []string) {
-	count := 0
-	for range array {
-		count++
-	}
-	for i := 0; i < count; i++ {
-		for j := i + 1; j < count; j++ {
+	for i, _ := range array {
+		for j := i + 1; j < len(array); j++ {
 			if array[i] > array[j] {
 				array[i], array[j] = array[j], array[i]
 			}
 		}
 	}
+
 }
 
 //printhex
